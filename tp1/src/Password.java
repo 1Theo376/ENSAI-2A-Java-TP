@@ -40,18 +40,17 @@ public class Password {
      */
     public static String bruteForce6Digit(String targetHash) {
         var i = 0;
-        while (i <= 999999){
+        while (i <= 999999) {
             String mdp = String.format("%06d", i);
-            if (targetHash.equals(hashPassword(mdp))){
+            if (targetHash.equals(hashPassword(mdp))) {
                 return mdp;
             }
-            i +=1;
-
+            i += 1;
 
         }
-            // Code here
+        // Code here
 
-            return null;
+        return null;
     }
 
     /**
@@ -69,29 +68,30 @@ public class Password {
      * @return true if the password is strong, false otherwise
      */
     public static boolean isStrongPassword(String password) {
-        if (password.length()>=12){
-            for (int U = 0; U<password.length(); U++) {
-                if (Character.isUpperCase(password.charAt(U))){
-                    for (int l = 0; l<password.length(); l++) {
-                        if (Character.isLowerCase(password.charAt(l))){
-                            for (int d = 0; d<password.length(); d++) {
-                                if (Character.isDigit(password.charAt(d))){
-                                    for (int s = 0; s<password.length(); s++) {
-                                        if (Character.isWhitespace(password.charAt(s))){
+        if (password.length() >= 12) {
+            for (int U = 0; U < password.length(); U++) {
+                if (Character.isUpperCase(password.charAt(U))) {
+                    for (int l = 0; l < password.length(); l++) {
+                        if (Character.isLowerCase(password.charAt(l))) {
+                            for (int d = 0; d < password.length(); d++) {
+                                if (Character.isDigit(password.charAt(d))) {
+                                    for (int s = 0; s < password.length(); s++) {
+                                        if (Character.isWhitespace(password.charAt(s))) {
                                             return false;
                                         }
-                                        if (s==password.length()-1){
+                                        if (s == password.length() - 1) {
                                             return true;
                                         }
 
+                                    }
                                 }
+                            }
+
                         }
+                    }
                 }
-                
             }
-        }
-    }}
-        // Code here
+            // Code here
         }
         return false;
     }
@@ -105,10 +105,18 @@ public class Password {
      *         true if the password is strong, false otherwise
      */
     public static HashMap<String, Boolean> checkPasswordsList(ArrayList<String> passwords) {
+        HashMap<String, Boolean> Password = new HashMap<>();
+        for (int i = 0; i < passwords.size(); i++) {
+            if (isStrongPassword(passwords.get(i))) {
+                Password.put(passwords.get(i), true);
+            } else if (!isStrongPassword(passwords.get(i))) {
+                Password.put(passwords.get(i), false);
+            }
+        }
 
         // Code here
 
-        return null;
+        return Password;
     }
 
     /**
