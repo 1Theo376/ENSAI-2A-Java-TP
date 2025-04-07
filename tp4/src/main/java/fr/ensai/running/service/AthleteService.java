@@ -48,4 +48,6 @@ public class AthleteService {
         athleteRepository.deleteById(id);
         log.warn("Athlete {} deleted", id);
     }
+
+
 }
